@@ -1,0 +1,2 @@
+detect_insults
+==============

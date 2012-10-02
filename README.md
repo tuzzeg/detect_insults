@@ -11,13 +11,12 @@ I decided to build a bunch of simple (basic) classifiers and combine them to a f
 ### Word/stem/POS tag models
 The most obvious NLP features are words and stems. [Stanford POS tagger](http://nlp.stanford.edu/software/tagger.shtml) were used to retrieve word's POS tags which then were used as an ordinary words/stems features.
 
-<table>
-  <tr>
-    <td>Words</td><td>I</td><td>really</td><td>do</td><td>n't</td><td>understand</td><td>your</td><td>point</td><td>.</td>
-    <td>Stems</td><td>I</td><td>realli</td><td>do</td><td>n't</td><td>understand</td><td>your</td><td>point</td><td>.</td>
-    <td>POS tags</td><td>PRP</td><td>RB</td><td>VBP</td><td>RB</td><td>VB</td><td>PRP$</td><td>NN</td><td>.</td>
-  </tr>
-</table>
+<pre>
+          0         1         2        3        4          5        6        7
+words:    I         really    do       n't      understand your     point    .
+stems:    I         realli    do       n't      understand your     point    .
+POS tags: PRP       RB        VBP      RB       VB         PRP$     NN       .
+</pre>
 
 Using word/stem/POS tag sequence one can build more complicated features: bigrams, trigrams, unordered bigrams/trigrams, subsequences of sliding window of length N and so on.
 
@@ -37,11 +36,11 @@ unordered bigrams: PRP-RB    RB-VBP    RB-VBP   RB-Vb    PRP$-VB  NN-PRP$
 After extracting all featurs they should be scored. There are a bunch of different scoring approaches: 0/1, TF, TF\*IDF, Probability score, Mutual information ad so on.
 Brief explanation:
 
-0/1 - word present/not present in document
-TF  - term frequncy - how many times this word occured in the document
-[TF*IDF](http://en.wikipedia.org/wiki/Tf%E2%80%93idf) - use IDF (inverted document frequncy) to lower weight of popular words
-Probability score - Probability of seeing this word in document of some class
-[Mutual information](http://en.wikipedia.org/wiki/Pointwise_mutual_information)
+* 0/1 - word present/not present in document
+* TF  - term frequncy - how many times this word occured in the document
+* [TF*IDF](http://en.wikipedia.org/wiki/Tf%E2%80%93idf) - use IDF (inverted document frequncy) to lower weight of popular words
+* Probability score - Probability of seeing this word in document of some class
+* [Mutual information](http://en.wikipedia.org/wiki/Pointwise_mutual_information)
 
 I used probability score for the most features. 
 
